@@ -1,0 +1,33 @@
+<view wx:if="{{loaded}}">
+    <scroll-view scroll-y>
+        <view class="bg-white text-center padding">
+            <block wx:if="{{cardData.title}}">
+                <view class="title margin-xl padding">《{{cardData.title}}》</view>
+                <view class="author text-lg margin-xl">{{cardData.author}}</view>
+                <view class="paragraphs">
+                    <view class="text-xl margin-xl" wx:for="{{cardData.paragraphs}}" wx:key="index">{{item}}</view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="title margin-xl">{{cardData.name}}</view>
+                <view class="desc text-xl margin-xl">{{cardData.desc}}</view>
+            </block>
+            <view class="share padding-bottom">
+                <button open-type="share" class="text-green text-lg cu-btn block bg-white">
+                    <text class="cuIcon-share padding-xs"></text>转发分享
+                </button>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="action solid-top bg-white">
+        <button wx:if="{{!reviewInfo && !updated}}" class="cu-btn block bg-green margin-tb-sm xl" style="padding:0rpx;height:80rpx" bindtap="update">
+        第{{cardData.status + 1}}次打卡
+        </button>
+        <button wx:if="{{reviewInfo && !updated}}" class="cu-btn block line-green margin-tb-sm xl" style="padding:0rpx;height:80rpx">
+        {{reviewInfo}}第{{cardData.status + 1}}次打卡
+        </button>
+        <button wx:if="{{reviewInfo && updated}}" class="cu-btn block line-green margin-tb-sm xl" style="padding:0rpx;height:80rpx">
+        {{reviewInfo}}第{{cardData.status + 2}}次打卡
+        </button>
+    </view>
+</view>

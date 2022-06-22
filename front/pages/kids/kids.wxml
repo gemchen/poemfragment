@@ -1,0 +1,80 @@
+<view class="padding bg-white text-center text-lg">
+  已添加孩子：
+</view>
+<view class="padding bg-white flex align-center">
+  <view class="kids">
+    <view class="cu-avatar-group">
+      <view class="cu-avatar round lg" wx:for="{{kids}}" wx:key="index" bindtap="selectKid" data-index="{{index}}">
+        {{item.avatarWord}}
+        <view wx:if="{{item.selected && select}}" class="cu-tag badge cuIcon-check bg-green"></view>
+      </view>
+    </view>
+  </view>
+  <view class="add">
+    <view class="padding solid-left" style="padding-right:0rpx">
+      <button class="cu-btn icon add" bindtap="addKid">
+        <text class="cuIcon-add"/>
+      </button>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{select}}" class="margin bg-white">
+  <view class="cu-bar justify-end padding">
+    <view class="content">已选择孩子：</view>
+    <view wx:if="{{default}}" class="tag cu-tag line-green radius">首页默认</view>
+  </view>
+  <view class="kidInfo" style="padding:70rpx 20rpx 70rpx 20rpx">
+    <view class="cu-avatar lg round">
+      {{selectedAvatarWord}}
+    </view>
+    <view class="kidName padding">
+      <input class="solid-bottom" bindinput="input" focus="{{!disabled}}" disabled="{{disabled}}" model:value="{{selectedKidName}}" style="width:{{inputWidth*30}}rpx;max-width:270rpx"></input>
+    </view>
+    <text wx:if="{{disabled}}" class="cuIcon-write text-blue" bindtap="changeName"/>
+    <button bindtap="cancelChange" wx:if="{{!disabled}}" class="cu-btn sm round bg-gray" style="width:100rpx;margin:0rpx">取消</button>
+    <button bindtap="confirmChange" wx:if="{{!disabled}}" class="cu-btn sm round bg-green" style="width:100rpx;margin:0rpx 0rpx 0rpx 30rpx">确认</button>
+  </view>
+  <view class="cu-bar text-lg">
+    <view class="action margin-0 flex-sub solid-right" bindtap="cancel">取消选择</view>
+    <view class="action margin-0 flex-sub text-green solid-right" wx:if="{{!default}}" bindtap="setDefault">设为默认</view>
+    <view class="action margin-0 flex-sub text-red" bindtap="deleteKid">删除孩子</view>
+  </view>
+</view>
+
+<view class="cu-modal {{addKidModal == true ? 'show' : ''}}">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view wx:if="{{firstKid}}" class="content">请至少添加一名孩子：</view>
+      <view wx:if="{{!firstKid}}" class="content">添加新的孩子：</view>
+    </view>
+    <view class="padding">
+      <view class="cu-form-group">
+        <view class="title">孩子：</view>
+        <input cursor-spacing = "180rpx" bindfocus="kidInputFocus" bindblur="kidInputBlur" placeholder="{{placeholder}}" model:value="{{kidName}}"></input>
+      </view>
+    </view>
+    <view class="cu-bar text-lg padding bg-white">
+      <view wx:if="{{!firstKid}}" class="action flex-sub solid-right text-lg" bindtap="cancelAdd">取消添加</view>
+      <view wx:if="{{firstKid}}" class="action flex-sub text-green solid-right text-lg" bindtap="defaultAdd">使用默认</view>
+      <view class="action flex-sub text-green text-lg" bindtap="confirmAdd">确认添加</view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{deleteModal==true ? 'show' : ''}}" catchtap="cancelDelete">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="content">确认删除？</view>
+    </view>
+    <view class="padding-xl">
+      <text class="cuIcon-warnfill text-red padding-xs"></text>
+      删除后将丢失该孩子的全部信息！其他亲属也将丢失这些信息!
+    </view>
+    <view class="cu-bar text-lg padding bg-white">
+      <view class="action flex-sub solid-right" bindtap="cancelDelete">取消删除</view>
+      <view class="action flex-sub text-red" bindtap="confirmDelete">确认删除</view>
+    </view>
+  </view>
+</view>
+

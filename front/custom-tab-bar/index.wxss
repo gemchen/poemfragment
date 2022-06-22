@@ -1,0 +1,15 @@
+@import "../colorui/main.wxss";
+@import "../colorui/icon.wxss";
+.active{
+  color: #39b54a;
+  }
+.default{
+  color: #000;
+}
+.cu-bar.tabbar{
+  background-color:white ;
+} 
+.cu-btn.cuIcon-add.shadow{
+  background-color: #39b54a;
+  color:white
+}

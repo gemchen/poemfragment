@@ -1,0 +1,34 @@
+<view class="cu-modal {{gotKidsModal == true ? 'show' : ''}}" catchtap="confirmGot">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="content">收到分享的孩子如下：</view>
+    </view>
+    <scroll-view scroll-y class="kids margin-top margin-bottom"> 
+      <checkbox-group class="margin-right margin-left">
+        <label class="cu-form-group" wx:for="{{kidsGot}}" wx:key="index">
+          <view class="kid">
+            <view class="cu-avatar round">{{item.avatarWord}}</view>
+            <view class="padding-left-sm">{{item.name}}</view>
+          </view>
+          <checkbox class="round" checked="{{true}}" disabled/>
+        </label>
+      </checkbox-group>
+    </scroll-view>
+    <view class="cu-bar bg-white padding">
+      <view class="action flex-sub text-lg text-green" bindtap="confirmGot">我知道了</view>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{reLoadModal == true ? 'show' : ''}}" catchtap="confirmGot">
+  <view class="cu-dialog text-center" style="max-width:500rpx" catchtap="reLoad">
+    <view class="cu-bar justify-center text-lg bg-white padding">
+     信息可能已被其他亲属更新，重新加载？
+    </view>
+    <view class="solid-bottom text-xsl padding">
+      <text class=" cuIcon-refresh text-green"></text>
+    </view>
+    <view class="cu-bar bg-white padding">
+      <view class="action flex-sub text-lg text-green" bindtap="reLoad">重新加载</view>
+    </view>
+  </view>
+</view>

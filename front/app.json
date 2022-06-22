@@ -1,0 +1,37 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/me/me",
+    "pages/search/search",
+    "pages/myCard/myCard",
+    "pages/searchCard/searchCard",
+    "pages/kids/kids",
+    "pages/advice/advice",
+    "pages/share/share",
+    "pages/notice/notice",
+    "pages/readme/readme"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "古诗碎片",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "custom": true,
+      "list": [{
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      }, 
+      {
+        "pagePath": "pages/search/search",
+        "text": "添加"
+      }, 
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的"
+      }]
+    },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

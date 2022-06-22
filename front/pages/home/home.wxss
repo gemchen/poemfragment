@@ -1,0 +1,178 @@
+.container {
+  padding:0rpx;
+  align-items: start
+}
+.header{
+  height:60px;
+  position: fixed;
+  width:100%;
+}
+.view{
+  right:0;
+  position: fixed;
+  padding:0rpx 35rpx;
+  font-weight: 500;
+  font-size: 50rpx;
+}
+.updaterAvatar {
+  overflow: hidden;
+  width: 64rpx;
+  height: 64rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.display {
+  width:100%;
+}
+.notice{
+  top:60px;
+  height:50px;
+  position: fixed;
+  width:100%;
+  z-index:10
+}
+scroll-view{
+  position:absolute;
+  bottom:60px
+}
+.time {
+	padding: 25px 0px 5px 0px;
+	font-size: 26rpx;
+	color: #888;
+	display: block;
+}
+.item{
+  position: relative;
+}
+.status{
+  display: block;
+	position: absolute;
+	top: 25px;
+	z-index: 2;
+	left: 40px;
+}
+.checkStatus{
+  display: block;
+	position: absolute;
+	top: 64rpx;
+	z-index: 2;
+	right: 75rpx;
+}
+.cardContent{
+  padding: 10px 25px 0px 30px;
+	border-radius: 6rpx;
+  width:100%
+}
+.preview{
+  padding:30rpx 50rpx 30rpx 50rpx;
+}
+.heading{
+  font-size: large;
+  font-weight: 600;
+  text-align: center;
+}
+.tags{
+  display: inline-block
+}
+.updation{
+  height:120rpx;
+  padding:20rpx;
+  flex:1 1 auto
+}
+.interaction{
+  height:120rpx;
+  width:180rpx;
+  flex:0 0 auto;
+}
+.topButton{
+  position: fixed;
+  bottom: 160rpx;
+  width: 120rpx; 
+  z-index: 11
+}
+.cu-btn.icon.bottom{
+  height:100rpx;
+  width:100rpx;
+  background-color:#fff;
+  z-index: 4;
+}
+.cuIcon-appreciate{
+  font-weight: 600;
+  font-size: 35rpx;
+}
+.cuIcon-comment{
+  font-size: 35rpx;
+  font-weight: 600;
+  padding-left:30rpx;
+  padding-right:10rpx
+}
+.cu-bar{
+  background-color: white;
+  height:120rpx;
+}
+.card::before {
+  position: absolute; 
+  top: 20px;
+  left: 22px;
+  z-index: 1;
+  height: 0;
+  padding-right: 28px;
+  line-height: 0;
+  border: 15px solid #ece0e0;
+  border-right-color: transparent; 
+  content: '';
+  box-shadow: -1px 5px 5px -5px #000;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 22px;
+  border: 4px solid #b1a89c;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.back-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.40);
+}
+
+.release {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  min-height:50px;
+  padding: 8px 0px 8px 8px;
+  background: #FFFFFF;
+}
+
+.release .textarea {
+  background: #F7F7F7;
+  border-radius: 4px;
+  min-height: 34px;
+  max-height: 80px;
+  border-width: 4px 8px;
+  border-style: solid;
+  border-color: #F7F7F7;
+  line-height: 26px;
+  font-size: 16px;
+  color: #333333;
+  display: flex;
+  flex:1 1 auto
+
+}
+.release .submit {
+  width: 80px;
+  text-align: center;
+  flex:0 0 auto;
+}

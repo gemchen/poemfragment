@@ -1,0 +1,138 @@
+<view wx:if="{{loaded}}" class="container">
+  <view class="header flex align-center bg-white justify-center solid">
+      <view class="kidInfo">
+        <picker bindchange="selectKid" value="{{kidIndex}}" range="{{kids ? kids : null}}" range-key="{{'name'}}">
+          <view class="picker flex align-center">
+            <view class="cu-avatar round margin-right-sm">{{avatarWord}}</view>
+            {{kids[kidIndex].name}}
+            <text class="cuIcon-unfold margin-left-sm"/>
+          </view>
+        </picker>
+      </view>
+      <view class="view">
+        <text wx:if="{{view}}" class="cuIcon-notice" bindtap="toScheduleCards"></text>
+        <text wx:else class="cuIcon-calendar" bindtap="toMyCards"></text>
+      </view>
+  </view>
+  <view class="notice flex align-center bg-white solid-bottom justify-center" wx:if="{{!view}}">
+    <text class="cuIcon-title text-blue">到达打卡时间的卡片如下：</text>
+  </view>
+  <scroll-view 
+    scroll-y 
+    scroll-into-view = "{{view ? scrollItem : scrollItem1}}" 
+    bindscrolltolower="getMoreCards"
+    bindscroll="scroll"
+    style="height:{{scrollHeight}}px;top:{{top}}px"
+    >
+    <view class="timeline" style="padding-bottom:{{paddingBottom}}px">
+      <view wx:if="{{view && myCards.length == 0}}" class="text-center text-grey padding">空空如也~</view>
+      <view wx:if="{{!view && scheduleCards.length == 0}}" class="text-center text-grey padding">没有需要复习的内容~</view>
+      <block wx:for="{{view ? myCards : scheduleCards}}" wx:key="index">
+        <view class="part" id="item{{index + 1}}">
+          <view class="time text-center">{{item.addTime}}</view>
+          <view class="item flex" >
+            <view class="status">
+              <text wx:if="{{selectedArray[index] == 1}}" class="cuIcon-radioboxfill line-red" style="font-size:34rpx"></text>
+              <text wx:elif="{{!selectedArray[index] & item.status < 9}}" class="text-{{statusColors[item.status]}} text-bold">{{status[item.status]}}</text>
+              <text wx:elif="{{!selectedArray[index] & item.status >= 9}}" class="cuIcon-likefill line-red" style="font-size:34rpx"></text>
+            </view>
+            <view class="cardContent">
+              <view class="card shadow">
+                <view class="preview bg-white" bindtap="toMyCard" bindlongtap="selectCard" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" data-index="{{index}}">
+                  <block wx:if="{{item.title}}">
+                    <view class="heading" style="padding:10rpx 60rpx 10rpx 60rpx">《{{item.title}}》</view>
+                    <view class="author text-center padding-xs">{{item.author}}</view>
+                    <view class="paragraphs padding-xs">
+                      <view class="text-cut text-lg">{{item.paragraphs[0] + item.paragraphs[1]}}</view>
+                    </view>
+                    <view wx:if="{{item.tags}}" class="tags">
+                      <view wx:for="{{item.tags}}" wx:key="index" class="cu-tag bg-green light round margin-xs">{{item}}</view>
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view class="heading" style="padding:10rpx 60rpx 10rpx 60rpx">{{item.name}}</view>
+                    <view class="desc padding-xs">
+                        <view class="text-cut text-lg">{{item.desc}}</view>
+                    </view>
+                  </block>
+                  <view class="checkStatus">
+                    <text wx:if="{{item.checked}}" class="cuIcon-check line-red" style="font-weight:bold;font-style:oblique;font-size:large"></text>
+                    <text wx:else class="cuIcon-right" style="font-size:large"></text>
+                  </view>
+                </view>
+              </view>
+              <view class ="cardBottom shadow-warp">
+                <view class="cardBottom1 bg-white flex align-center">
+                  <view class="updation flex align-center">
+                    <view class="updaterAvatar">
+                      <view wx:if="{{item.updaterAvatar == 'default'}}" class="cu-avatar round"><text class="cuIcon-people"/></view>
+                      <view wx:else class="cu-avatar round" style="background-image:url({{item.updaterAvatar}})"></view>
+                    </view>  
+                    <view class="updateInfo padding-left-xs">
+                      <view class="nickName text-bold">{{item.updaterName}}</view>
+                      <view wx:if="{{item.status == 0}}" class="text-sm flex justify-between">{{item.updateTime}}\t添加</view>
+                      <view wx:else class="text-sm flex justify-between">{{item.updateTime}}\t更新</view>
+                    </view>
+                  </view>
+                  <view class ="interaction padding-sm align-center flex" bindtap="comment" data-index="{{index}}">
+                    <text class="cuIcon-comment"></text>留言
+                  </view>
+                </view>
+                <view class = "comments bg-white padding" wx:if="{{item.comments.length>0}}" style="padding-top:0rpx">
+                  <view class="flex content radius solid-bottom padding-sm" style="background-color:#F7F7F7 " wx:for="{{item.comments}}" wx:for-index="commentIndex" wx:for-item="commentItem" data-parent="{{index}}" data-comment="{{commentIndex}}" wx:key="index" bindtap="replyComment">
+                    <view class="commentContent">
+                      <text class="text-bold">{{commentItem.name + ' '}}:</text>
+                      \t{{commentItem.content}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view> 
+        </view> 
+      </block>
+      <view wx:if="{{!view && scrollBottom1 && scheduleCards.length>0}}" class="text-center text-grey padding">没有更多卡片了~</view>
+      <view wx:if="{{view && scrollBottom && myCards.length>0}}" class="text-center text-grey padding">没有更多卡片了~</view>
+    </view>
+  </scroll-view>
+  <view wx:if="{{topButton}}" class="topButton padding-left-xs">
+    <button class="cu-btn icon bottom round line-green" bindtap="toTop">
+      <text class="cuIcon-top" style="font-size:50rpx"/>
+    </button>
+  </view>
+
+  <view class="cu-modal bottom-modal {{deleteCardModal == true ? 'show' : ''}}" catchtap="cancelDelete">
+    <view class="cu-dialog" catchtap style="margin-bottom:60px">
+      <view class="cu-bar padding">
+        <view class="action flex-sub solid-right" bindtap="cancelDelete">
+          <text class="cuIcon-close padding-xs"/>取消
+        </view>
+        <view class="action flex-sub text-red" bindtap="deleteCard">
+          <text class="cuIcon-delete padding-xs"/>删除
+        </view>
+      </view>
+    </view>
+  </view>
+  <view  class="back-page" wx:if="{{comment}}" catchtap="closeCommentBox">
+    <view class="release" style="bottom:{{keyboardHeight}}px">
+      <textarea 
+        class="textarea" 
+        fixed="{{true}}" 
+        auto-focus="{{true}}" 
+        auto-height="{{true}}" 
+        show-confirm-bar="{{false}}"
+        cursor-spacing = "30"
+        placeholder="写留言" 
+        catchtap="tap"
+        bindinput="setValue"
+        value="{{commentValue}}"
+        bindfocus="commentFocus"
+        bindblur="commentBlur"
+        adjust-position="{{false}}"
+      />
+      <view class="submit" catchtap="submitContent">
+        <button class="cu-btn line-green" style="width:60px;padding:10px;height:100%">发送</button>
+      </view>
+    </view>
+  </view> 
+</view>

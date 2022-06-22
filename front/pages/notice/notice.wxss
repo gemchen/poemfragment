@@ -1,0 +1,7 @@
+.kid{
+    display: flex;
+    align-items: center;
+}
+.kids{    
+    max-height:400px
+}

@@ -1,0 +1,11 @@
+.kids{
+    flex:1 1 auto
+  }
+.add{
+    flex:0 0 auto;
+  }
+.kidInfo{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}

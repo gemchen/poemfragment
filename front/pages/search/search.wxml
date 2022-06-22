@@ -1,0 +1,96 @@
+<view class="cu-bar bg-white search fixed align-center" style="height:60px">
+  <view class="action padding-left-sm" bindtap="showModal">
+    <text>{{searchType}}</text>
+    <text class="cuIcon-triangledownfill padding-left-xs"></text>
+  </view>
+  <view class="search-form round" style="margin:0rpx;height:40px">
+    <text class="cuIcon-search" style="font-size:32rpx"></text>
+    <input type="text" placeholder="输入搜索的关键词" model:value="{{input}}" style="padding:0rpx;font-size:32rpx"></input>
+    <text class="cuIcon-close padding-xs" bindtap="clear" style="font-size:32rpx"></text>
+  </view>
+  <view class="searchButton margin-lr-sm">
+    <button class="text-lg cu-btn bg-gradual-green shadow-blur round" style="width:150rpx;height:40px" bindtap="search">搜索</button>
+  </view>
+</view>
+<scroll-view scroll-y>
+  <view class="inputRecommend padding" wx:if="{{hidden == false}}">
+    <view class="cu-bar justify-end padding-right-sm">
+      <view class="content text-bold">推荐搜索</view>
+      <view class="action" bindtap="refresh">
+        <text class="cuIcon-refresh padding-right-xs"></text>换一批
+      </view>
+    </view>
+    <view class="recTags">
+        <view  wx:for="{{recTags}}" wx:key="index" style="font-size:28rpx" class="margin-sm cu-tag bg-white round shadow" bindtap="useRecTag" data-index="{{index}}">{{item}}</view>
+    </view>
+  </view>
+  <view wx:if="{{authorCards.length != 0 & url1Res == true & url2Res == true && hidden}}" class="padding-top">
+    <view class="cu-list menu card-menu bg-white">
+      <view wx:for="{{authorCards}}" wx:key="index" class="padding solid flex shadow">
+        <view class="content padding-right-sm solid-right text-center" bindtap="toAuthorCard" data-index="{{index}}">
+          <view class="title padding-xs">{{item.name}}</view>
+          <view class="desc text-cut text-lg padding-xs">{{item.desc}}</view>
+        </view>
+        <view class="addAction">
+          <view wx:if="{{item.added==false}}">
+            <button class="cu-btn cuIcon-add icon" bindtap="addAuthorCard" data-index="{{index}}"/>
+          </view>
+          <view wx:else>
+            <button class="cu-btn cuIcon-check bg-green round icon"/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{searchCards.length != 0 & url1Res == true & url2Res == true && hidden}}"  class="padding-top padding-bottom-xl">
+    <view class="cu-list menu card-menu bg-white">
+      <view wx:for="{{searchCards}}" wx:key="index" class="padding solid flex shadow">
+        <view class="content padding-right-sm solid-right text-center" bindtap="toSearchCard" data-index="{{index}}">
+          <view class="title padding-xs">《{{item.title}}》</view>
+          <view class="author padding-xs">{{item.author}}</view>
+          <view class="paragraphs text-cut text-lg padding-xs">{{item.paragraphs[0] + item.paragraphs[1]}}</view>
+          <view class="text-left">
+            <view wx:for="{{item.tags}}" wx:key="index" class="cu-tag bg-green light round margin-xs">{{item}}</view>
+          </view>
+        </view>
+        <view class="addAction">
+          <view wx:if="{{item.added==false}}">
+            <button class="cu-btn cuIcon-add icon" bindtap="addSearchCard" data-index="{{index}}"/>
+          </view>
+          <view wx:else>
+            <button class="cu-btn cuIcon-check bg-green icon round"/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="result padding-xl text-center" wx:if="{{authorCards.length == 0 && searchCards.length == 0 && pageLoad == 'search' && url1Res == true && url2Res == true && hidden}}"> 
+    {{resultInfo}}
+  </view> 
+</scroll-view>
+<view class="cu-modal {{modalName=='RadioModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog">
+    <radio-group class="block" bindchange="choose">
+      <view class="cu-list menu text-left">
+        <view class="cu-item">
+          <label class="flex justify-between align-center flex-sub">
+            <view class="flex align-center">
+              <view class="text-lg">搜内容：</view>
+              \t按作者、诗词名、诗词句等搜索
+            </view>
+            <radio class="round" value="搜内容" checked></radio>
+          </label>
+        </view>
+        <view class="cu-item">
+          <label class="flex justify-between align-center flex-sub">
+            <view class="flex align-center">
+              <view class="text-lg">搜标签：</view>
+              \t按年级、意象、主旨等搜索
+            </view>
+            <radio class="round" value="搜标签"></radio>
+          </label>
+        </view>
+      </view>
+    </radio-group>
+  </view>
+</view>

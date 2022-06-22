@@ -1,0 +1,24 @@
+<view class="advice padding-top-xl padding-left-lg bg-white">
+    <view class="cu-bar align-end">
+        <textarea 
+            class="textarea" 
+            fixed="{{true}}" 
+            auto-focus="{{true}}" 
+            auto-height="{{true}}" 
+            show-confirm-bar="{{false}}"
+            cursor-spacing = "30"
+            placeholder='提出您的意见或建议' 
+            catchtap="tap"
+            bindinput="setValue"
+            value="{{commentValue}}"
+            bindfocus="focus"
+            bindblur="blur"
+            adjust-position="{{false}}"
+            placeholder-style="font-size:16px"
+        />
+        <text class="cuIcon-close" style="font-size:18px;padding:4px" catchtap="clear"></text>
+        <view class="submit text-center" catchtap="submitContent">
+            <button class="cu-btn line-green" style="width:60px;padding:10px">发送</button>
+        </view>
+    </view>
+</view>

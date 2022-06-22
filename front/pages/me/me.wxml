@@ -1,0 +1,39 @@
+<view class="userInfo">
+  <view class="userAvatar">
+    <view wx:if="{{avatarUrl == null}}" class="cu-avatar round lg" bindtap="requsetAvatar"><text class="cuIcon-people"/></view>
+    <view wx:else class="cu-avatar round lg" style="background-image:url({{avatarUrl}})"></view>
+  </view>  
+  <view class="userName">
+    <input class="solid-bottom" bindinput="input" focus="{{!disabled}}" disabled="{{disabled}}" model:value="{{userName}}" style="width:{{inputWidth*30}}rpx;max-width:300rpx"></input>
+  </view>
+  <text wx:if="{{disabled == true}}" class="cuIcon-write text-blue" bindtap="changeUserName"/>
+  <button bindtap="cancel" wx:if="{{disabled == false}}" class="cu-btn sm round bg-white" style="width:100rpx;margin:0rpx">取消</button>
+  <button bindtap="confirm" wx:if="{{disabled == false}}" class="cu-btn sm round bg-green" style="width:100rpx;margin:0rpx 0rpx 0rpx 30rpx">确认</button>
+</view>
+
+<view class="cu-list menu card-menu shadow-lg">
+  <view class="cu-item arrow" bindtap="toMyKids">
+    <view class="content">
+      <text class="cuIcon-peoplelist"></text>
+      我的孩子
+    </view>
+  </view>
+  <view class="cu-item arrow" bindtap="share">
+    <view class="content">
+      <text class="cuIcon-share" ></text>
+      邀请与分享
+    </view>
+  </view>
+  <view class="cu-item arrow" bindtap="advise">
+    <view class="content">
+      <text class="cuIcon-post"></text>
+      意见建议
+    </view>
+  </view>
+  <view class="cu-item arrow" bindtap="readme">
+    <view class="content">
+      <text class="cuIcon-read"></text>
+      关于
+    </view>
+  </view>
+</view>

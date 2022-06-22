@@ -1,0 +1,21 @@
+scroll-view{
+    position:absolute;
+    top:60px;  
+    bottom:60px;
+}
+.content{
+    flex:1 1 auto;
+    overflow:hidden
+}
+.addAction{
+    display:flex;
+    align-items:center;
+    padding-left: 30rpx;
+    flex:0 0 auto;
+}
+.title{
+    font-size: large;
+    font-weight: 600;
+}
+  
+  

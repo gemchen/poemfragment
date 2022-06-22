@@ -1,0 +1,40 @@
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{0==TabCur?'text-green cur':''}}" bindtap="tabSelect" data-id="0">
+      <text class="cuIcon-friend text-lg padding-xs"></text>邀请亲属 
+    </view>
+    <view class="cu-item flex-sub {{1==TabCur?'text-green cur':''}}" bindtap="tabSelect" data-id="1">
+      <text class="cuIcon-command text-lg padding-xs"></text>推荐小程序
+    </view>
+  </view>
+</scroll-view>
+<view wx:if="{{TabCur==0}}" class="kidsLists margin">
+  <view class="title text-lg text-center bg-white padding solid-bottom">选择要分享的孩子：</view>
+  <scroll-view scroll-y class="kids"> 
+    <checkbox-group bindchange="checkboxChange">
+      <label class="cu-form-group" wx:for="{{kids}}" wx:key="index">
+        <view class="kid">
+          <view class="cu-avatar round">{{item.avatarWord}}</view>
+          <view class="padding-left-sm">{{item.name}}</view>
+        </view>
+        <checkbox class="round" value="{{item.kidId + item.name}}" checked="{{checked}}"/>
+      </label>
+    </checkbox-group>
+  </scroll-view>
+</view>
+<view wx:if="{{TabCur==0 && !cancel && kidsToShare.length > 0}}" class="flex bg-white margin-top padding-top padding-bottom">
+  <view class="flex-sub solid-right">
+    <button class="cu-btn text-lg bg-white" bindtap="cancel">取消选择</button>
+  </view>
+  <view class="flex-sub">
+    <button open-type="share" class="cu-btn text-lg text-green bg-white">发送给亲属</button>
+  </view>
+</view> 
+<view wx:if="{{TabCur==1}}" class="margin text-center">
+  <view class="padding-lg text-lg bg-white">
+    <text class="padding-left">扫描小程序码进入小程序：</text>
+  </view>
+  <view class="bg-white padding-bottom-xl">
+      <image src="/resource/images/miniapp.png" style="height:200px;width:250px"></image>
+  </view>
+</view>

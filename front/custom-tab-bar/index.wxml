@@ -1,0 +1,12 @@
+<view class="cu-bar tabbar solid-top" style="height:60px">
+  <view class="action {{selected === 0 ? 'active' : 'default'}}" data-index="0" bindtap="switchTab">
+    <view class="cuIcon-home"/>首页
+  </view>
+  <view class="action add-action" data-index="1" bindtap="switchTab">
+    <button class="cu-btn cuIcon-add shadow"/>
+    <view class="{{selected === 1 ? 'active' : 'default'}}">添加</view>
+  </view>
+  <view class="action {{selected === 2 ? 'active' : 'default'}}" data-index="2" bindtap="switchTab">
+    <view class="cuIcon-my"/>我的
+  </view>
+</view>

@@ -1,0 +1,17 @@
+scroll-view{
+    position:absolute;
+    bottom:130rpx;
+    top:0rpx;
+    background-color: white;
+}
+.title{
+    font-size: large;
+    font-weight: 800;
+}
+.action{
+    position: fixed;
+    width:100%;
+    height: 130rpx;
+    bottom: 0;
+}  
+  

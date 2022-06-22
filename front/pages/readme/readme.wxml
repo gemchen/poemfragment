@@ -1,0 +1,26 @@
+<view class="margin-lg bg-white padding-xl shadow">
+    <view class="padding text-green text-xl text-center">
+        关于古诗碎片
+    </view>
+    <view class="padding text-lg" style="line-height:50rpx">
+        古诗碎片是一个利用碎片化时间、围绕孩子构建的古诗词学习圈。
+    </view>
+    <view class="cu-bar padding">
+        <view class="action" style="line-height:45rpx">
+            <text class="cuIcon-title text-green"></text>
+            <text>支持标签搜索，所见所感都能在诗词库中找到对应古诗词,日常生活中的兴趣灵感都可以用古诗词记录~</text>
+        </view>
+    </view>
+        <view class="cu-bar padding">
+        <view class="action" style="line-height:45rpx">
+            <text class="cuIcon-title text-green"></text>
+            <text>根据艾宾浩斯遗忘曲线自动生成复习时间安排，一键获取当前应复习的内容，坚持阶段打卡，不再背得快忘得快~</text>
+        </view>
+    </view>
+    <view class="cu-bar padding">
+        <view class="action" style="line-height:45rpx">
+            <text class="cuIcon-title text-green"></text>
+            <text>孩子的诗词卡片可以分享给家人朋友，灵活分工，协同督促，学习复习状态一目了然~</text>
+        </view>
+    </view>
+</view>

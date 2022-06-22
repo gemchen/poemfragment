@@ -1,0 +1,23 @@
+<scroll-view scroll-y>
+    <view class="bg-white text-center padding">
+        <block wx:if="{{cardData.title}}">
+            <view class="title margin-xl padding">《{{cardData.title}}》</view>
+            <view class="author text-lg margin-xl">{{cardData.author}}</view>
+            <view class="paragraphs">
+                <view class="text-xl margin-xl" wx:for="{{cardData.paragraphs}}" wx:key="index">{{item}}</view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="title margin-xl">{{cardData.name}}</view>
+            <view class="desc text-xl margin-xl">{{cardData.desc}}</view>
+        </block>
+    </view>
+</scroll-view>
+<view class="action solid-top bg-white">
+    <view wx:if="{{cardData.added==false}}">
+        <button class="cu-btn block margin-tb-sm xl bg-green" style="padding:0rpx;height:80rpx" bindtap="addCard">添加到个人卡片</button>
+    </view>
+    <view wx:else>
+        <button class="cu-btn block line-green margin-tb-sm xl" style="padding:0rpx;height:80rpx">尽快第1次打卡哦</button>
+    </view>
+</view>
